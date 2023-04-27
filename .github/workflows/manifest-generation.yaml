@@ -19,8 +19,6 @@ on:
 
 jobs:
   template-manifests: 
-    environment:
-      name: ${{ inputs.environment | '' }}
     runs-on: ubuntu-latest
     steps:
 
