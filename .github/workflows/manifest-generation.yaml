@@ -13,7 +13,6 @@ on:
         required: true
         type: choice
         options:
-        - cloud-development
         - cloud-staging
         - cloud-production
 
@@ -28,8 +27,8 @@ jobs:
     - name: Kustomize Github Action
       uses: karancode/kustomize-github-action@v1.3.2
       with:
-        kustomize_build_dir: 'deployments/${{ input.environment }}'
-        kustomize_output_file: "${{ input.environment }}-${{ inputs.version-tag }}.yaml"
+        kustomize_build_dir: 'deployments/${{ inputs.environment }}'
+        kustomize_output_file: "${{ inputs.environment }}-${{ inputs.version-tag }}.yaml"
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
