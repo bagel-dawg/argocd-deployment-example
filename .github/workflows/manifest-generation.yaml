@@ -33,6 +33,6 @@ jobs:
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ input.environment }}-${{ inputs.version-tag }}.yaml
-        path: ${{ input.environment }}-${{ inputs.version-tag }}.yaml
+        name: ${{ inputs.environment }}-${{ inputs.version-tag }}.yaml
+        path: ${{ inputs.environment }}-${{ inputs.version-tag }}.yaml
         retention-days: 5
