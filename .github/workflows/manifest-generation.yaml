@@ -1,0 +1,41 @@
+name: Manifest Generation
+run-name: Manifest Generation
+
+on:
+  workflow_dispatch:
+    inputs:
+      version-tag:
+        description: 'Version artifact version (Ex: 0.1.0)'
+        type: string
+        required: true
+      environment:
+        description: 'Deployment'
+        required: true
+        type: choice
+        options:
+        - cloud-development
+        - cloud-staging
+        - cloud-production
+
+jobs:
+  template-manifests: 
+    environment:
+      name: ${{ inputs.environment | '' }}
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout repo
+      uses: actions/checkout@v3
+
+    - name: Kustomize Github Action
+      uses: karancode/kustomize-github-action@v1.3.2
+      with:
+        kustomize_build_dir: 'deployments/${{ input.environment }}'
+        kustomize_output_file: "${{ input.environment }}-${{ inputs.version-tag }}.yaml"
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ input.environment }}-${{ inputs.version-tag }}.yaml
+        path: ${{ input.environment }}-${{ inputs.version-tag }}.yaml
+        retention-days: 5
