@@ -40,5 +40,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.environment }}-${{ inputs.version-tag }}.yaml
-        path: deployments/${{ inputs.environment }}-${{ inputs.version-tag }}.yaml
+        path: ${{ inputs.environment }}-${{ inputs.version-tag }}.yaml
         retention-days: 5
