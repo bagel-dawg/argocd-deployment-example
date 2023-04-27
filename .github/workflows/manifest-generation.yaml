@@ -34,7 +34,7 @@ jobs:
 
     - name: Kustomize Build
       run: |
-        ./bin/kustomize build deployments/${{ inputs.environment }} > "${{ inputs.environment }}-${{ inputs.version-tag }}.yaml"
+        .bin/kustomize build deployments/${{ inputs.environment }} > "${{ inputs.environment }}-${{ inputs.version-tag }}.yaml"
 
     - name: Archive code coverage results
       uses: actions/upload-artifact@v3
